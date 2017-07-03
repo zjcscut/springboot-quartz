@@ -2,6 +2,7 @@ package org.throwable.support;
 
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.throwable.dao.CustomDao;
 
@@ -15,6 +16,7 @@ public class CustomQuartzJob extends QuartzJobBean {
 
 	private CustomDao customDao;
 	private int timeout;
+	private ApplicationContext applicationContext;
 
 	@Override
 	protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
@@ -29,5 +31,9 @@ public class CustomQuartzJob extends QuartzJobBean {
 
 	public void setTimeout(int timeout) {
 		this.timeout = timeout;
+	}
+
+	public void setApplicationContext(ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
 	}
 }
